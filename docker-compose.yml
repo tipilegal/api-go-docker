@@ -1,0 +1,42 @@
+services:
+  api:
+    build: .
+    container_name: api-go
+    ports:
+      - "3000:3000"
+    environment:
+      DB_NAME: apidb
+      DB_USER: apiuser
+      DB_PASSWORD: apipassword
+      DB_HOST: db
+      DB_PORT: 5432
+    depends_on:
+      - db
+    restart: on-failure
+
+  db:
+    image: postgres:16-alpine 
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: apidb
+      POSTGRES_USER: apiuser
+      POSTGRES_PASSWORD: apipassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
