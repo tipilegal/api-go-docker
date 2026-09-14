@@ -12,4 +12,4 @@ docker compose up --build
 
 Sobe api (3000), postgres (5432) e pgadmin (8080, login admin@admin.com / admin123).
 
-Nao entrei com SonarQube, Trivy, Render e ZAP do desafio completo, foquei no essencial funcionando.
+Nao entrei com SonarQube, Trivy, Render e ZAP do desafio completo, foquei no essencial.
